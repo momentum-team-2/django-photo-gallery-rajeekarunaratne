@@ -16,10 +16,30 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
+from core import views
+from django.conf.urls import include
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    # path('accounts/', include('registration.backends.simple.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('', views.home, name='home'),
+    path('photos/', views.list_photos, name='list_photos'),
+    path('photos/<int:pk>/', views.show_photo, name='show_photo'),
+    path('photos/add/', views.add_photo, name='add_photo'),
+    path('photos/<int:pk>/favorite/', views.toggle_starred_photo, name='toggle_starred_photo'),
+    path('photos/<int:pk>/delete/', views.delete_photo, name='delete_photo'),
+    path('albums/', views.list_albums, name='list_albums'),
+    path('albums/add/', views.add_album, name='add_album'),
+    path('albums/<int:pk>/add/photo/', views.add_photo_to_album, name='add_photo_to_album'),
+    path('albums/<int:pk>/favorite/', views.toggle_starred_album, name='toggle_starred_album'),
+    path('albums/<int:pk>/', views.show_album, name='show_album'),
+    path('albums/<int:pk>/edit/', views.edit_album, name='edit_album'),
+    path('albums/<int:pk>/delete/', views.delete_album, name='delete_album'),
+    path('albums/search/', views.search_photos, name='search_photos'),
+    path('accounts/profile/', views.profile, name='profile'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar

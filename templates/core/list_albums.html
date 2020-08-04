@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="light-purple">
+  <h1>List Albums</h1>
+</div>
+
+<form action="/core/search">
+  <input placeholder="find album" type="text" name="q">
+  <input type="submit" value="Search">
+</form>
+<p><a href="{% url 'add_photo' %}">Add New Photo</a></p>
+<p><a href="{% url 'add_album' %}">Add New Album</a></p>
+<p><a href="{% url 'profile' %}">Profile Page</a></p>
+
+<div class="flex flex-wrap">
+  {% for album in albums %}
+    <div class="flex ma4"><a href="{% url 'show_album' pk=album.pk %}">{{ album.title }}</a></div>
+  {% endfor %}
+</div>
+<br>
+<div>
+    <a class="red" href="{% url 'list_photos' %}">Photo List</a>
+    <a class="red" href="{% url 'list_albums' %}">Album List</a>
+    <a class="red" href="{% url 'search_photos' %}">Search</a><br>
+  </div>
+{% endblock %}

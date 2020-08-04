@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="mt2 mb0 f3 fw4 ttu tracked tc mw7 center mt4">
+  <form action="{% url 'delete_photo' pk=photo.pk %}" method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want to delete '{{ photo.photo_thumbnail }}'?</p>
+    <div>
+        <i class="fa fa-trash"></i>
+        <button class="mt2 mb0 f6 fw4 ttu tracked oh3 f6 grow no-underline br-pill ph3 pv2 mb2 dib white bg-dark-pink" type="submit">delete photo</button>
+    <div>
+        <i class="fa fa-ban"></i>
+        <a style="text-decoration:none" class="mt2 mb0 f6 fw4 ttu tracked oh3 f6 grow no-underline br-pill ph3 pv2 mb2 dib white bg-dark-pink" href="{% url 'show_photo' %}">cancel</a>
+    </div>
+
+    </div>
+  </form>
+</div>
+{% endblock %}

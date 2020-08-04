@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block scripts %}
+  <script src="{% static 'js/photo.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div>
+  <br>  
+  <br>
+  <br>
+  <br> 
+</div>
+
+<div class="w-40 pa3 b--light-purple b--dashed">
+  <h2>{{ album.title }}
+    <a id="toggle-starred" data-album-id="{{ album.pk }}" class="no-underline pointer dib grow">
+      {% if album.starred %}
+        &#9733;
+      {% else %}
+        &#9734;
+      {% endif %}
+      </a>
+  </h2>
+
+  <ul style='list-style-type: none'>
+    {% for photo in photos %}
+    <!-- <a  class="black-90 mt2 mb0 f5 fw4 ttu tracked" href="{% url 'add_photo_to_album' pk=album.pk %}"><li>{{ photo.photo_thumbnail }}</li></a>  -->
+    <div class="flex "><img src="{{ photo.thumbnail_image.url }}"></div>
+    <br>
+    {% endfor %}
+    <a style="text-decoration:none" class="btn btn-outline-light mt-2 mt2 mb0 f6 fw4 ttu tracked" href="{% url 'add_photo_to_album' pk=album.pk%}">add another photo</a>
+    </ul>
+<div>
+    <a class="red" href="{% url 'list_photos' %}">Photo List</a>
+    <a class="red" href="{% url 'list_albums' %}">Album List</a>
+    <a class="red" href="{% url 'search_photos' %}">Search</a><br>
+</div>
+
+<script>
+  const toggleStarredLink = document.querySelector("#toggle-starred")
+    toggleStarredLink.addEventListener('click', function (e) {
+      e.preventDefault()
+      const albumId = toggleStarredLink.dataset['albumId']
+      fetch(`/albums/${albumId}/Starred/`, {
+          method: 'POST'
+      })
+      .then(res => res.json())
+      .then(data => {
+          if (data.starred) {
+              toggleStarredLink.innerHTML = '&#9733;'
+        } else {
+      toggleStarredLink.innerHTML = '&#9734;'
+        }
+      })
+  
+    })
+
+</script>
+{% endblock %}
