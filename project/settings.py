@@ -48,6 +48,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'imagekit',
+    'rest_framework',
+    'registration',
+
+
    
     # AllAuth-Dependencies
     'allauth',
@@ -61,10 +65,12 @@ INSTALLED_APPS = [
     # Third-party
     'debug_toolbar',
     'django_extensions',
+    
 
     # Project-specific
     'users',
     'core',
+    'api',
 ]
 
 LOGIN_REDIRECT_URL = '/accounts/profile/'
@@ -180,3 +186,12 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+
+ACCOUNT_ACTIVATION_DAYS = 14
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
+del DATABASES['default']['OPTIONS']['sslmode']

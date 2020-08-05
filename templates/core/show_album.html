@@ -1,9 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
 
-{% block scripts %}
-  <script src="{% static 'js/photo.js' %}"></script>
-{% endblock %}
 
 {% block content %}
 <div>
@@ -26,16 +22,20 @@
 
   <ul style='list-style-type: none'>
     {% for photo in photos %}
-    <!-- <a  class="black-90 mt2 mb0 f5 fw4 ttu tracked" href="{% url 'add_photo_to_album' pk=album.pk %}"><li>{{ photo.photo_thumbnail }}</li></a>  -->
+      {% if photo.image %}
     <div class="flex "><img src="{{ photo.thumbnail_image.url }}"></div>
+    <a class="red" href="{% url 'list_comments' pk=photo.pk %}">Comments</a>
+    {% endif %}
     <br>
     {% endfor %}
-    <a style="text-decoration:none" class="btn btn-outline-light mt-2 mt2 mb0 f6 fw4 ttu tracked" href="{% url 'add_photo_to_album' pk=album.pk%}">add another photo</a>
+    <a style="text-decoration:none" class="btn btn-outline-light mt-2 mt2 mb0 f6 fw4 ttu tracked" href="{% url 'add_photo_to_album' pk=album.pk%}">add photo</a>
     </ul>
+</div>
+
 <div>
-    <a class="red" href="{% url 'list_photos' %}">Photo List</a>
+    <br><a class="red" href="{% url 'list_photos' %}">Photo List</a>
     <a class="red" href="{% url 'list_albums' %}">Album List</a>
-    <a class="red" href="{% url 'search_photos' %}">Search</a><br>
+    <a href="{% url 'profile' %}">Profile Page</a><br>
 </div>
 
 <script>

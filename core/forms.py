@@ -1,8 +1,8 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Photo, Album
+from .models import Photo, Album, Comment
 
-class PhotoForm(ModelForm):
+class PhotoForm(forms.ModelForm):
     class Meta:
         model = Photo
         fields = [
@@ -10,7 +10,6 @@ class PhotoForm(ModelForm):
             'image',
             'owner',
             'public',   
-            'albums',         
         ]
 
 class AlbumForm(forms.ModelForm):
@@ -20,4 +19,12 @@ class AlbumForm(forms.ModelForm):
             'title',
             'public',
             'owner',
+            'cover_image',
+        ]
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = [
+            'body',
         ]

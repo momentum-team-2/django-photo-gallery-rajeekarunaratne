@@ -6,7 +6,7 @@
 </div>
 
 <div>
-  <form action="{% url 'add_photo_to_album' %}" method="POST">
+  <form action="{% url 'add_photo_to_album' pk=album.pk %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <div>
@@ -14,7 +14,7 @@
       <br>
       <a class="red" href="{% url 'list_photos' %}">Photo List</a>
       <a class="red" href="{% url 'list_albums' %}">Album List</a>
-      <a class="red" href="{% url 'search_photos' %}">Search</a><br>
+      <a href="{% url 'profile' %}">Profile Page</a><br>
     </div>
   </form>
 </div>

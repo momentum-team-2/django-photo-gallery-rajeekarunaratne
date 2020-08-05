@@ -6,17 +6,17 @@
 </div>
 
 <form action="/core/search">
-  <input placeholder="find album" type="text" name="q">
+  <input placeholder="find photo" type="text" name="q">
   <input type="submit" value="Search">
 </form>
 <p><a href="{% url 'add_photo' %}">Add New Photo</a></p>
 <p><a href="{% url 'add_album' %}">Add New Album</a></p>
-<p><a href="{% url 'profile' %}">Profile Page</a></p>
+
 
 <div class="flex flex-wrap">
   {% for photo in photos %}
     {% if photo.image %}
-    <div class="flex "><img src="{{ photo.thumbnail_image.url }}"></div>
+    <a class="flex" href="{% url 'show_photo' pk=photo.pk %}"><img src="{{ photo.thumbnail_image.url }}"></a>
     {% endif %}
   {% endfor %}
 </div>
@@ -24,6 +24,6 @@
 <div>
     <a class="red" href="{% url 'list_photos' %}">Photo List</a>
     <a class="red" href="{% url 'list_albums' %}">Album List</a>
-    <a class="red" href="{% url 'search_photos' %}">Search</a><br>
+    <a href="{% url 'profile' %}">Profile Page</a><br>
   </div>
 {% endblock %}

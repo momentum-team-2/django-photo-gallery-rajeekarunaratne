@@ -2,11 +2,12 @@
 
 {% block content %}
 <div class="light-purple">
-  <h1>Profile of {{ user.username }}</h1>
+  <h1>Profile</h1>
+  <h2>{{ user.username }}'s Albums</h2>
 </div>
 
 <form action="/core/search">
-  <input placeholder="find album" type="text" name="q">
+  <input placeholder="find photo" type="text" name="q">
   <input type="submit" value="Search">
 </form>
 
@@ -14,8 +15,9 @@
 
 <div class="flex flex-wrap">
   {% for album in albums %}
-    {% if album.photo %}
-    <div class="flex "><img src="{{ album.photo.url }}"></div>
+    <div class="flex ma4"><a href="{% url 'show_album' pk=album.pk %}">{{ album.title }}</a></div>
+    {% if album.photos %}
+    <br><div class="flex"><img src="{{ album.cover_image.thumbnail_image.url }}"></div>
     {% endif %}
   {% endfor %}
 </div>
@@ -23,6 +25,6 @@
 <div>
     <a class="red" href="{% url 'list_photos' %}">Photo List</a>
     <a class="red" href="{% url 'list_albums' %}">Album List</a>
-    <a class="red" href="{% url 'search_photos' %}">Search</a><br>
+    <a href="{% url 'profile' %}">Profile Page</a><br>
   </div>
 {% endblock %}

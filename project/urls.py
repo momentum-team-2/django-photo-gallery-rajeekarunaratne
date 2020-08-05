@@ -29,6 +29,7 @@ urlpatterns = [
     path('photos/<int:pk>/', views.show_photo, name='show_photo'),
     path('photos/add/', views.add_photo, name='add_photo'),
     path('photos/<int:pk>/favorite/', views.toggle_starred_photo, name='toggle_starred_photo'),
+    path('photos/<int:pk>/comments/', views.list_comments, name='list_comments'),
     path('photos/<int:pk>/delete/', views.delete_photo, name='delete_photo'),
     path('albums/', views.list_albums, name='list_albums'),
     path('albums/add/', views.add_album, name='add_album'),
@@ -39,7 +40,13 @@ urlpatterns = [
     path('albums/<int:pk>/delete/', views.delete_album, name='delete_album'),
     path('albums/search/', views.search_photos, name='search_photos'),
     path('accounts/profile/', views.profile, name='profile'),
+    path('api/', include('api.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += [
+    path('api-auth/', include('rest_framework.urls')),
+]
+
 
 if settings.DEBUG:
     import debug_toolbar
