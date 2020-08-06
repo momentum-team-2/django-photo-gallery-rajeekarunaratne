@@ -11,7 +11,7 @@
 
 <div class="w-40 pa3 b--light-purple b--dashed">
   <h2>{{ album.title }}
-    <a id="toggle-starred" data-album-id="{{ album.pk }}" class="no-underline pointer dib grow">
+    <a id="toggle-starred" href="{% url 'toggle_starred_album' pk=album.pk %}" class="no-underline pointer dib grow">
       {% if album.starred %}
         &#9733;
       {% else %}
@@ -28,8 +28,10 @@
     {% endif %}
     <br>
     {% endfor %}
+    {% if request.user == album.owner %}
     <a style="text-decoration:none" class="btn btn-outline-light mt-2 mt2 mb0 f6 fw4 ttu tracked" href="{% url 'add_photo_to_album' pk=album.pk%}">add photo</a>
-    </ul>
+    {% endif %}  
+  </ul>
 </div>
 
 <div>
@@ -38,24 +40,5 @@
     <a href="{% url 'profile' %}">Profile Page</a><br>
 </div>
 
-<script>
-  const toggleStarredLink = document.querySelector("#toggle-starred")
-    toggleStarredLink.addEventListener('click', function (e) {
-      e.preventDefault()
-      const albumId = toggleStarredLink.dataset['albumId']
-      fetch(`/albums/${albumId}/Starred/`, {
-          method: 'POST'
-      })
-      .then(res => res.json())
-      .then(data => {
-          if (data.starred) {
-              toggleStarredLink.innerHTML = '&#9733;'
-        } else {
-      toggleStarredLink.innerHTML = '&#9734;'
-        }
-      })
-  
-    })
 
-</script>
 {% endblock %}

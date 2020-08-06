@@ -1,9 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
 
-{% block scripts %}
-  <script src="{% static 'js/photo.js' %}"></script>
-{% endblock %}
 
 {% block content %}
 <div>
@@ -15,7 +11,7 @@
 
 <div class="w-40 pa3 b--light-purple b--dashed">
   <h2>{{ album.title }}
-    <a id="toggle-starred" data-album-id="{{ album.pk }}" class="no-underline pointer dib grow">
+    <a id="toggle-starred" href="{% url 'toggle_starred_photo' pk=photo.pk %}" class="no-underline pointer dib grow">
       {% if photo.starred %}
         &#9733;
       {% else %}
@@ -38,24 +34,5 @@
     <a href="{% url 'profile' %}">Profile Page</a><br>
 </div>
 
-<script>
-  const toggleStarredLink = document.querySelector("#toggle-starred")
-    toggleStarredLink.addEventListener('click', function (e) {
-      e.preventDefault()
-      const photoId = toggleStarredLink.dataset['photoId']
-      fetch(`/photos/${photoId}/Starred/`, {
-          method: 'POST'
-      })
-      .then(res => res.json())
-      .then(data => {
-          if (data.starred) {
-              toggleStarredLink.innerHTML = '&#9733;'
-        } else {
-      toggleStarredLink.innerHTML = '&#9734;'
-        }
-      })
-  
-    })
 
-</script>
 {% endblock %}

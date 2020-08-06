@@ -130,28 +130,30 @@ def delete_photo(request, pk):
 
 @login_required
 @csrf_exempt
-@require_POST
 def toggle_starred_album(request, pk):    
     album = get_object_or_404(request.user.albums, pk=pk)
-    if album in request.user.starred_album.all():
-        request.user.starred_album.remove(album)
-        return JsonResponse({"starred": False})
+    if album.starred:
+        album.starred = False
+        album.save()
+        return redirect(to='show_album', pk=pk)
     else:
-        request.user.starred_album.add(album)
-        return JsonResponse({"starred": True})
+        album.starred = True
+        album.save()
+        return redirect(to='show_album', pk=pk)
 
 
 @login_required
 @csrf_exempt
-@require_POST
 def toggle_starred_photo(request, pk):    
     photo = get_object_or_404(request.user.photos, pk=pk)
-    if photo in request.user.starred_photo.all():
-        request.user.starred_photo.remove(photo)
-        return JsonResponse({"starred": False})
+    if photo.starred:
+        photo.starred = False
+        photo.save()
+        return redirect(to='show_photo', pk=pk)
     else:
-        request.user.starred_photo.add(photo)
-        return JsonResponse({"starred": True})
+        photo.starred = True
+        photo.save()
+        return redirect(to='show_photo', pk=pk)
 
 
 def profile(request):
