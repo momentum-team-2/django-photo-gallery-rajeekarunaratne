@@ -56,7 +56,7 @@ def add_photo(request):
         form = PhotoForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             photo = form.instance
-            photo.user = request.user
+            photo.owner = request.user
             photo.save()
             return redirect(to='list_photos')
 
@@ -70,7 +70,7 @@ def add_album(request):
         form = AlbumForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             album = form.instance
-            album.user = request.user
+            album.owner = request.user
             album.save()
             return redirect(to='list_albums')
 
@@ -158,11 +158,11 @@ def toggle_starred_photo(request, pk):
 
 def profile(request):
     albums = request.user.albums.all()
-    # starred_albums = request.users.albums.filter(starred=true)
+    starred_albums = request.user.albums.filter(starred=True)
     # albums = request.user.albums.all.order_by('')
     albums = request.user.albums.all()
 
-    return render(request, 'core/profile.html', {'albums': albums})
+    return render(request, 'core/profile.html', {'albums': albums , 'starred_albums': starred_albums})
 
 def search_photos(request):
     query = request.GET['q']

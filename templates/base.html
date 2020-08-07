@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo Gallery</title>
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+    <link rel=“stylesheet” href=“https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css”>
+    <link rel=“stylesheet” href=“https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css”>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
 </head>
 <body class="sans-serif">  
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">        
         <div class="fl w-50 pa2">
             {% if user.is_authenticated %}
             <a class="f6 link dib light-purple dim mr3 mr4-ns" href="{% url 'account_logout' %}">Click to Log Out</a>
@@ -19,7 +24,8 @@
         <div class="fl w-50 pa2 tr light-purple">
             <h2>Photo Gallery</h2>
         </div>
-    <div class="mw9 center">
+    </nav>    
+    <div class="container mw9 center">
         {% block content %}
         {% endblock %}
     </div>

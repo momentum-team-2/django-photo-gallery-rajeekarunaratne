@@ -6,7 +6,7 @@
 </div>
 
 <div>
-  <form action="{% url 'edit_album' %}" method="POST">
+  <form action="{% url 'edit_album' pk=album.pk %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <div>

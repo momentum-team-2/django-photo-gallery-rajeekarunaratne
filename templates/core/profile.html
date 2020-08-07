@@ -6,14 +6,24 @@
   <h2>{{ user.username }}'s Albums</h2>
 </div>
 
-<form action="/core/search">
+<form action="/albums/search">
   <input placeholder="find photo" type="text" name="q">
   <input type="submit" value="Search">
 </form>
 
 <p><a href="{% url 'add_album' %}">Add New Album</a></p>
-
+<h2>Favorite Albums</h2>
 <div class="flex flex-wrap">
+  {% for album in starred_albums %}
+    <div class="flex ma4"><a href="{% url 'show_album' pk=album.pk %}">{{ album.title }}</a></div>
+    {% if album.photos %}
+    <br><div class="flex"><img src="{{ album.cover_image.thumbnail_image.url }}"></div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<h2>All Albums</h2> 
+<div class="flex flex-wrap"> 
   {% for album in albums %}
     <div class="flex ma4"><a href="{% url 'show_album' pk=album.pk %}">{{ album.title }}</a></div>
     {% if album.photos %}

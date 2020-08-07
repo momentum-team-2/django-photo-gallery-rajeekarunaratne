@@ -87,8 +87,8 @@ SOCIALACCOUNT_PROVIDERS = {
         # (``socialaccount`` app) containing the required client
         # credentials, or list them here:
         'APP': {
-            'client_id': '123',
-            'secret': '456',
+            'client_id': '974523219590-i81bqvjfukqvb6hpuuchaiquu890v8qd.apps.googleusercontent.com',
+            'secret': '15EC6VYdopbwuYTR9ER8ep5h',
             'key': ''
         }
     }
@@ -210,3 +210,6 @@ if env("USE_S3"):
 import django_heroku
 django_heroku.settings(locals())
 del DATABASES['default']['OPTIONS']['sslmode']
+
+# Register email prevention
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

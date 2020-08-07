@@ -15,7 +15,7 @@ class Album(models.Model):
 
 
 class Photo(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='photos')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=False, related_name='photos')
     title = models.CharField(max_length=255)
     albums = models.ManyToManyField(Album, related_name='photos', blank=True)
     public = models.BooleanField(default=False)

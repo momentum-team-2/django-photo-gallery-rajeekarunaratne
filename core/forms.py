@@ -8,8 +8,7 @@ class PhotoForm(forms.ModelForm):
         fields = [
             'title',
             'image',
-            'owner',
-            'public',   
+            'public',
         ]
 
 class AlbumForm(forms.ModelForm):
@@ -18,7 +17,6 @@ class AlbumForm(forms.ModelForm):
         fields = [
             'title',
             'public',
-            'owner',
             'cover_image',
         ]
 

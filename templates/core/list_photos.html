@@ -5,18 +5,21 @@
   <h1>List Photos</h1>
 </div>
 
-<form action="/core/search">
+<form action="/albums/search">
   <input placeholder="find photo" type="text" name="q">
   <input type="submit" value="Search">
 </form>
-<p><a href="{% url 'add_photo' %}">Add New Photo</a></p>
-<p><a href="{% url 'add_album' %}">Add New Album</a></p>
+<br><p><a class="btn btn-primary" href="{% url 'add_photo' %}">Add New Photo</a></p>
+<p><a class="btn btn-primary" href="{% url 'add_album' %}">Add New Album</a></p>
 
 
-<div class="flex flex-wrap">
+<div class="row flex flex-wrap">
   {% for photo in photos %}
     {% if photo.image %}
-    <a class="flex" href="{% url 'show_photo' pk=photo.pk %}"><img src="{{ photo.thumbnail_image.url }}"></a>
+    <div class="col-4 mb3">
+      <a class="flex" href="{% url 'show_photo' pk=photo.pk %}"><img src="{{ photo.thumbnail_image.url }}" class="img-thumbnail"></a>
+      <p>{{ photo.title }}</p>
+    </div>
     {% endif %}
   {% endfor %}
 </div>
