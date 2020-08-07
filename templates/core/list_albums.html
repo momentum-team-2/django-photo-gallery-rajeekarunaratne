@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="light-purple">
+<div class="light-purple mt5">
   <h1>List Albums</h1>
   <h2>All Users' Public Albums</h2>
 </div>
@@ -10,8 +10,8 @@
   <input placeholder="find photo" type="text" name="q">
   <input type="submit" value="Search">
 </form>
-<p><a href="{% url 'add_photo' %}">Add New Photo</a></p>
-<p><a href="{% url 'add_album' %}">Add New Album</a></p>
+<br><p><a class="btn btn-primary" href="{% url 'add_photo' %}">Add New Photo</a></p>
+<p><a class="btn btn-primary" href="{% url 'add_album' %}">Add New Album</a></p>
 
 <div class="flex flex-wrap">
   {% for album in albums %}
@@ -25,6 +25,6 @@
 <div>
     <a class="red" href="{% url 'list_photos' %}">Photo List</a>
     <a class="red" href="{% url 'list_albums' %}">Album List</a>
-    <a href="{% url 'profile' %}">Profile Page</a><br>
+    <a class="red" href="{% url 'profile' %}">Profile Page</a><br>
   </div>
 {% endblock %}

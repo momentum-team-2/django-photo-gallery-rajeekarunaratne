@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="light-purple">
+<div class="light-purple mt5">
   <h1>Profile</h1>
   <h2>{{ user.username }}'s Albums</h2>
 </div>
@@ -11,7 +11,7 @@
   <input type="submit" value="Search">
 </form>
 
-<p><a href="{% url 'add_album' %}">Add New Album</a></p>
+<br><p><a class="btn btn-primary" href="{% url 'add_album' %}">Add New Album</a></p>
 <h2>Favorite Albums</h2>
 <div class="flex flex-wrap">
   {% for album in starred_albums %}
@@ -35,6 +35,6 @@
 <div>
     <a class="red" href="{% url 'list_photos' %}">Photo List</a>
     <a class="red" href="{% url 'list_albums' %}">Album List</a>
-    <a href="{% url 'profile' %}">Profile Page</a><br>
+    <a class="red" href="{% url 'profile' %}">Profile Page</a><br>
   </div>
 {% endblock %}

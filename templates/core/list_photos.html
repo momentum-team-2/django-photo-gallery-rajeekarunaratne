@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="light-purple">
+
+
+<div class="light-purple mt5">
   <h1>List Photos</h1>
 </div>
 
@@ -27,6 +29,7 @@
 <div>
     <a class="red" href="{% url 'list_photos' %}">Photo List</a>
     <a class="red" href="{% url 'list_albums' %}">Album List</a>
-    <a href="{% url 'profile' %}">Profile Page</a><br>
+    <a class="red" href="{% url 'profile' %}">Profile Page</a><br>
   </div>
+
 {% endblock %}
