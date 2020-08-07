@@ -5,10 +5,10 @@
     <h1>Comments for {{ photo.title }}</h1>
     <div><img src="{{ photo.image.url }}"></div>
     {% for comment in comments %}
-        <div>{{ comment.owner }} says '{{ comment.body }}'
+        <div class="mt3">{{ comment.owner }} says '{{ comment.body }}'
         </div>
     {% endfor %}            
-    <div>
+    <div class="mt5">
         <h2>Add a New Comment</h2>
         <form action="{% url 'list_comments' pk=photo.pk %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}

@@ -159,7 +159,6 @@ def toggle_starred_photo(request, pk):
 def profile(request):
     albums = request.user.albums.all()
     starred_albums = request.user.albums.filter(starred=True)
-    # albums = request.user.albums.all.order_by('')
     albums = request.user.albums.all()
 
     return render(request, 'core/profile.html', {'albums': albums , 'starred_albums': starred_albums})
