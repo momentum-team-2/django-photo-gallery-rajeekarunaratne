@@ -3,19 +3,16 @@
 {% block content %}
 
 
-<div class="light-purple mt5">
-  <h1>List Photos</h1>
+<div class="gray mt5">
+  <h1>Photo List</h1>
 </div>
 
 <form action="/albums/search">
   <input placeholder="find photo" type="text" name="q">
   <input type="submit" value="Search">
 </form>
-<br><p><a class="btn btn-primary" href="{% url 'add_photo' %}">Add New Photo</a></p>
-<p><a class="btn btn-primary" href="{% url 'add_album' %}">Add New Album</a></p>
 
-
-<div class="row flex flex-wrap">
+<div class="row flex flex-wrap mt5">
   {% for photo in photos %}
     {% if photo.image %}
     <div class="col-4 mb3">
@@ -25,11 +22,9 @@
     {% endif %}
   {% endfor %}
 </div>
+<br><p><a class="btn btn-primary mt4" href="{% url 'add_photo' %}">Add New Photo</a></p>
+
 <br>
-<div>
-    <a class="red" href="{% url 'list_photos' %}">Photo List</a>
-    <a class="red" href="{% url 'list_albums' %}">Album List</a>
-    <a class="red" href="{% url 'profile' %}">Profile Page</a><br>
-  </div>
+
 
 {% endblock %}

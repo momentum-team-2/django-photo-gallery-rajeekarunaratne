@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="mt5 w-50 pa3 b--light-purple b--dashed">
+<div class="mt5 w-50 pa3 b--gray b--dotted">
   <h2>{{ album.title }}
     <a id="toggle-starred" href="{% url 'toggle_starred_photo' pk=photo.pk %}" class="no-underline pointer dib grow">
       {% if photo.starred %}
@@ -22,11 +22,7 @@
     </ul>
 </div>
 
-<div>
-    <br><a class="red" href="{% url 'list_photos' %}">Photo List</a>
-    <a class="red" href="{% url 'list_albums' %}">Album List</a>
-    <a class="red" href="{% url 'profile' %}">Profile Page</a><br>
-</div>
+
 
 
 {% endblock %}

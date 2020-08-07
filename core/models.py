@@ -12,7 +12,8 @@ class Album(models.Model):
     public = models.BooleanField(default=False)
     starred = models.BooleanField(default=False)
 
-
+    def __str__(self):
+        return f'{self.title}'
 
 class Photo(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=False, related_name='photos')
@@ -27,6 +28,9 @@ class Photo(models.Model):
     date_uploaded = models.DateTimeField(auto_now_add=True)
     starred = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f'{self.title} by {self.owner.username}'    
+
 
 
 class Comment(models.Model):
@@ -35,3 +39,5 @@ class Comment(models.Model):
     body = models.TextField()
     date_uploaded = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.owner.username} on {self.photo}'

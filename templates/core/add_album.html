@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="light-purple">
+<div class="gray mt5">
   <h1>Add Album</h1>
 </div>
 
@@ -12,9 +12,6 @@
     <div>
       <button type="submit">Add Album</button><br>
       <br>
-      <a class="red" href="{% url 'list_photos' %}">Photo List</a>
-      <a class="red" href="{% url 'list_albums' %}">Album List</a>
-      <a href="{% url 'profile' %}">Profile Page</a><br>
     </div>
   </form>
 </div>

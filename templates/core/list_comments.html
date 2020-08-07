@@ -5,7 +5,7 @@
     <h1>Comments for {{ photo.title }}</h1>
     <div><img src="{{ photo.image.url }}"></div>
     {% for comment in comments %}
-        <div>{{ comment.owner }} says {{ comment.body }}
+        <div>{{ comment.owner }} says '{{ comment.body }}'
         </div>
     {% endfor %}            
     <div>
@@ -18,11 +18,7 @@
         </div>
         </form>        
     </div>    
-    <div>
-        <br><br><a class="red" href="{% url 'list_photos' %}">Photo List</a>
-        <a class="red" href="{% url 'list_albums' %}">Album List</a>
-        <a href="{% url 'profile' %}">Profile Page</a><br>
-    </div> 
+
     <br>       
 </div>
 {% endblock %}

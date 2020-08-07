@@ -1,30 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="light-purple mt5">
-  <h1>List Albums</h1>
-  <h2>All Users' Public Albums</h2>
+<div class="gray mt5">
+  <h1>All Users' Public Albums</h1>
 </div>
 
 <form action="/albums/search">
   <input placeholder="find photo" type="text" name="q">
   <input type="submit" value="Search">
 </form>
-<br><p><a class="btn btn-primary" href="{% url 'add_photo' %}">Add New Photo</a></p>
-<p><a class="btn btn-primary" href="{% url 'add_album' %}">Add New Album</a></p>
 
-<div class="flex flex-wrap">
+
+<div class="row flex flex-wrap mt5">
   {% for album in albums %}
-    <div class="flex ma4"><a href="{% url 'show_album' pk=album.pk %}">{{ album.title }}</a></div>
-    {% if album.photos %}
-    <div class=""><img src="{{ album.cover_image.thumbnail_image.url }}"></div>
+    {% if album.photos %}  
+    <div class="col-4 mb3">
+    <a class="flex" href="{% url 'show_album' pk=album.pk %}"><img src="{{ album.cover_image.thumbnail_image.url }}" class="img-thumbnail"></a>    
+    <p>{{ album.title }}</p>
+    </div>
     {% endif %}
   {% endfor %}
 </div>
+<br><p><a class="btn btn-primary mt4" href="{% url 'add_photo' %}">Add New Photo</a></p>
+<p><a class="btn btn-primary" href="{% url 'add_album' %}">Add New Album</a></p>
+
 <br>
-<div>
-    <a class="red" href="{% url 'list_photos' %}">Photo List</a>
-    <a class="red" href="{% url 'list_albums' %}">Album List</a>
-    <a class="red" href="{% url 'profile' %}">Profile Page</a><br>
-  </div>
+
 {% endblock %}

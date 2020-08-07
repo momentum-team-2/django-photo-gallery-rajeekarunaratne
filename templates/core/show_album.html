@@ -9,7 +9,7 @@
   <br> 
 </div>
 
-<div class="w-40 pa3 b--light-purple b--dashed">
+<div class="w-40 pa3 b--gray b--dotted">
   <h2>{{ album.title }}
     <a id="toggle-starred" href="{% url 'toggle_starred_album' pk=album.pk %}" class="no-underline pointer dib grow">
       {% if album.starred %}
@@ -23,23 +23,18 @@
   <ul style='list-style-type: none'>
     {% for photo in photos %}
       {% if photo.image %}
-    <div class="flex "><img src="{{ photo.thumbnail_image.url }}"></div>
+      <a class="flex" href="{% url 'show_photo' pk=photo.pk %}"><img src="{{ photo.thumbnail_image.url }}" class="img-thumbnail"></a>
     <a class="red" href="{% url 'list_comments' pk=photo.pk %}">Comments</a>
     {% endif %}
     <br>
     {% endfor %}
     {% if request.user == album.owner %}
-    <a style="text-decoration:none" class="btn btn-outline-light mt-2 mt2 mb0 f6 fw4 ttu tracked" href="{% url 'add_photo_to_album' pk=album.pk%}">add photo</a>
+    <a style="text-decoration:none" class="btn btn-outline-dark mt-2 mt2 mb0 f6 fw4 ttu tracked" href="{% url 'add_photo_to_album' pk=album.pk%}">add photo</a>
     {% endif %}  
   </ul>
 </div>
 
-<div>
-    <br>
-    <a class="red" href="{% url 'list_photos' %}">Photo List</a>
-    <a class="red" href="{% url 'list_albums' %}">Album List</a>
-    <a href="{% url 'profile' %}">Profile Page</a><br>
-</div>
+
 
 
 {% endblock %}
