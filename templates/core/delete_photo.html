@@ -13,7 +13,7 @@
         <button class="mt2 mb0 f6 fw4 ttu tracked oh3 f6 grow no-underline br-pill ph3 pv2 mb2 dib white bg-dark-pink" type="submit">delete photo</button>
     <div>
         <i class="fa fa-ban"></i>
-        <a style="text-decoration:none" class="mt2 mb0 f6 fw4 ttu tracked oh3 f6 grow no-underline br-pill ph3 pv2 mb2 dib white bg-dark-pink" href="{% url 'show_photo' %}">cancel</a>
+        <a style="text-decoration:none" class="mt2 mb0 f6 fw4 ttu tracked oh3 f6 grow no-underline br-pill ph3 pv2 mb2 dib white bg-dark-pink" href="{% url 'show_photo' pk=photo.pk %}">cancel</a>
     </div>
 
     </div>

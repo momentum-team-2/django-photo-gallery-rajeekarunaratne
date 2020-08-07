@@ -35,8 +35,6 @@ def list_photos(request):
 def show_photo(request, pk):
     photo = get_object_or_404(request.user.photos, pk=pk)
     form = PhotoForm()
-    # photos = photo.photos.order_by('date_uploaded')
-    # user_favorite = request.user.is_starred_photo(photo)
     return render(request, 'core/show_photo.html', {'photo': photo, 'form': form, 'pk': pk})
 
 
@@ -45,7 +43,6 @@ def show_album(request, pk):
     album = get_object_or_404(Album.objects.all(), pk=pk)
     form = AlbumForm()
     photos = album.photos.order_by('date_uploaded')
-    # user_favorite = request.user.is_starred_album(album)
     return render(request, 'core/show_album.html', {'album': album, 'pk': pk, 'form': form, 'photos': photos})
 
 

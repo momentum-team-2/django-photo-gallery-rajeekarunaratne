@@ -15,9 +15,9 @@
   </h2>
 
   <ul style='list-style-type: none'>
-      <div><img src="{{ photo.image.url }}"><br>{{ photo.title }}
-        <a class="red" href="{% url 'list_comments' pk=photo.pk %}">Comments</a>
-        <a style="text-decoration:none" class="black-90" href="{% url 'delete_photo' pk=photo.pk %}">delete photo</a>
+      <div>{{ photo.title }}<img src="{{ photo.image.url }}"><br>
+        <a class="red" href="{% url 'list_comments' pk=photo.pk %}">Comments</a><br>
+        <a style="text-decoration:none" class="red" href="{% url 'delete_photo' pk=photo.pk %}">Delete photo</a>
       </div>
 
     </ul>
